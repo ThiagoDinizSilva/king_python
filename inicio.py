@@ -1,26 +1,19 @@
+from personagem import Personagem
+from mensagens import Mensagens
+
 def inicio():
-    mensagem_inicial()
-    selecione_personagem()
 
 
-def mensagem_inicial():
-    print("####################################")
-    print("# Seja Bem Vindo Nobre Aventureiro #")
-    print("#################################### ")
+    p = Personagem
 
-def selecione_personagem():
-    personagemid = ""
-    print("Escolha como deseja iniciar sua jornada\n")
-    print("1- O Implacável Mago, Duck Dodgers(Fácil) \n2- O Desossado, Ivar(Média)"
-           "\n3- O Discipulo de Carl Marques, Píton(Médio)")
+    Mensagens.boas_vindas()
+    p.selecione_personagem()
 
-    while(personagemid !=1 and personagemid !=2 and personagemid !=3 ):
-        personagemid = int((input("Selecione um:").strip()))
-        print("falhou")
+    p.status()
 
-    if(personagemid == 2):
-        print ("Você selecionou {}".format(personagemid))
 
-    print(personagemid)
+
+
+
 if(__name__ == "__main__" ):
     inicio()
