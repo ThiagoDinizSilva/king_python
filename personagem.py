@@ -9,13 +9,9 @@ class Personagem:
         self.__sp = sp
         self.__pid = pid
 
-
-    @staticmethod
-    def selecione_personagem():
-
+    def selecione_personagem(self):
         print("Escolha como deseja iniciar sua jornada\n")
         print("1- O Implacável Mago, Duck Dodgers(Fácil) \n2- O Desossado, Ivar(Média) \n3- O Discipulo de Carl Marques, Píton(Difícil)")
-
         while (Personagem.pid != 1 and Personagem.pid != 2 and Personagem.pid != 3):
             Personagem.pid = int((input("Selecione um:\n").strip()))
             if(Personagem.pid == 1):
@@ -25,8 +21,10 @@ class Personagem:
                 Personagem.strength = 100
                 Personagem.dex = 1
                 Personagem.int = 200
-                print(Personagem)
-                return ("Você selecionou O Mago Duck Dodgers(Fácil)\n")
+                print("Você selecionou O Implacável Mago, Duck Dodgers(Fácil)")
+                s = input("Deseja Continuar? Sim[s] ou Não[n]")
+                if (s.upper() == "N"):
+                    Personagem.pid = 0
             elif(Personagem.pid == 2):
                 Personagem.hp = 50
                 Personagem.mp = 20
@@ -34,8 +32,11 @@ class Personagem:
                 Personagem.strength = 80
                 Personagem.dex = 6
                 Personagem.int = 100
-                print(Personagem)
-                return ("Você selecionou O Dessossado Ivar(Medio)\n")
+                print("Você selecionou O Dessossado Ivar(Medio)\n")
+                Personagem.status()
+                s = input("Deseja Continuar? Sim[s] ou Não[n]")
+                if (s.upper() == "N"):
+                    Personagem.pid = 0
             elif(Personagem.pid == 3):
                 Personagem.hp = 18
                 Personagem.mp = 6
@@ -43,11 +44,36 @@ class Personagem:
                 Personagem.strength = 20
                 Personagem.dex = 6
                 Personagem.int = 40
-                print(Personagem)
-                return ("Você selecionou O Discipulo de Cal Marques, Píton(Difícil)\n")
+                print("Você selecionou O Discipulo de Cal Marques, Píton(Difícil)\n")
+                Personagem.status()
+                s = input("Deseja Continuar? Sim[s] ou Não[n]")
+                if (s.upper() == "N"):
+                    Personagem.pid = 0
+                    
+    @staticmethod
+    def status():
+        print("Seus Status atuais: \nForça: {} \nDestreza: {} \nInteligência: {} "
+              "\nHP: {} \nMP: {} \nSP: {}".format(Personagem.strength, Personagem.dex, Personagem.int, Personagem.hp,
+                                                  Personagem.mp, Personagem.sp))
 
 
-# ----------- GETTERS E SETTERS ----------- #
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # ----------- GETTERS E SETTERS ----------- #
     @property
     def pid(self):
         return self.__pid
@@ -104,13 +130,10 @@ class Personagem:
     def sp(self, add):
         self.__sp += add
 
-    @staticmethod
-    def status():
-        return (print ("Seus Status atuais: \nForça: {} \nDestreza: {} \nInteligência: {} "
-                       "\nHP: {} \nMP: {} \nSP: {}".format(Personagem.strength,Personagem.dex,Personagem.int,Personagem.hp,
-                                                           Personagem.mp,Personagem.sp)))
-
+    @property
+    def pid(self):
+        return self.__pid
     @pid.setter
-    def pid(self, value):
-        self._pid = value
+    def pid(self, add):
+        self.__pid = add
 # ----------------------------------------- #
