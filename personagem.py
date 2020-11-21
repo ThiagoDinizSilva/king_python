@@ -1,6 +1,8 @@
+import random
 class Personagem:
 
-    def __init__(self, strength=1, dex=1,int=1,hp=1,mp=1,sp=1,pid=0):
+    def __init__(self, strength=1, dex=1,int=1,hp=1,mp=1,sp=1,pid=0,nivel =0):
+        self.__nivel = nivel
         self.__strength = strength
         self.__dex = dex
         self.__int = int
@@ -8,10 +10,10 @@ class Personagem:
         self.__mp = mp
         self.__sp = sp
         self.__pid = pid
-
+    #### Seleciona o nivel de dificuldade
     def selecione_personagem(self):
         print("Escolha como deseja iniciar sua jornada\n")
-        print("1- O Implacável Mago, Duck Dodgers(Fácil) \n2- O Desossado, Ivar(Média) \n3- O Discipulo de Carl Marques, Píton(Difícil)")
+        print("1- O Implacável Mago, Duck Dodgers(Easy) \n2- O Desossado, Ivar(regular) \n3- O Discipulo de Carl Marques, Píton(Hard)")
         while (Personagem.pid != 1 and Personagem.pid != 2 and Personagem.pid != 3):
             Personagem.pid = int((input("Selecione um:\n").strip()))
             if(Personagem.pid == 1):
@@ -21,7 +23,8 @@ class Personagem:
                 Personagem.strength = 100
                 Personagem.dex = 1
                 Personagem.int = 200
-                print("Você selecionou O Implacável Mago, Duck Dodgers(Fácil)")
+                Personagem.nivel = 1
+                print("Você selecionou O Implacável Mago, Duck Dodgers(Easy)")
                 s = input("Deseja Continuar? Sim[s] ou Não[n]")
                 if (s.upper() == "N"):
                     Personagem.pid = 0
@@ -32,7 +35,8 @@ class Personagem:
                 Personagem.strength = 80
                 Personagem.dex = 6
                 Personagem.int = 100
-                print("Você selecionou O Dessossado Ivar(Medio)\n")
+                Personagem.nivel = 1
+                print("Você selecionou O Dessossado Ivar(regular)\n")
                 Personagem.status()
                 s = input("Deseja Continuar? Sim[s] ou Não[n]")
                 if (s.upper() == "N"):
@@ -44,34 +48,23 @@ class Personagem:
                 Personagem.strength = 20
                 Personagem.dex = 6
                 Personagem.int = 40
-                print("Você selecionou O Discipulo de Cal Marques, Píton(Difícil)\n")
+                Personagem.nivel = 1
+                print("Você selecionou O Discipulo de Cal Marques, Píton(Hard)\n")
                 Personagem.status()
                 s = input("Deseja Continuar? Sim[s] ou Não[n]")
                 if (s.upper() == "N"):
                     Personagem.pid = 0
-                    
-    @staticmethod
-    def status():
-        print("Seus Status atuais: \nForça: {} \nDestreza: {} \nInteligência: {} "
-              "\nHP: {} \nMP: {} \nSP: {}".format(Personagem.strength, Personagem.dex, Personagem.int, Personagem.hp,
-                                                  Personagem.mp, Personagem.sp))
 
+    #### Exibe as informações do seu Personagem
+    def __str__(self):
+        return f'Seus status atuais são: \nnivel: {self.nivel} \nForça: {self.strength} ' \
+               f'\nDestreza: {self.dex} \nInteligência: {self.int} \nHP: {self.hp} \nMP: {self.mp}' \
+               f'\nSP: {self.sp}'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ### Sobe seu Personagem de Nível
+    def sobe_nivel(self):
+        for stats in dicionario:
+           print(Personagem[stats])
 
     # ----------- GETTERS E SETTERS ----------- #
     @property
@@ -136,4 +129,20 @@ class Personagem:
     @pid.setter
     def pid(self, add):
         self.__pid = add
+
+    @property
+    def nivel(self):
+        return self.__nivel
+
+    @nivel.setter
+    def nivel(self, add):
+        self.__nivel = add
 # ----------------------------------------- #
+
+
+p2 = Personagem(2, 2, 2, 2, 2, 2, 2, 2)
+
+dicionario = { 'strength':p2.strength,'dex':p2.dex}
+
+for x in dicionario:
+    print(dicionario[x])
