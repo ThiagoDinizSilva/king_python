@@ -1,20 +1,27 @@
 import random
 class Personagem:
 
-    def __init__(self, strength=1, dex=1,int=1,hp=1,mp=1,sp=1,pid=0,nivel =0):
-        self.__nivel = nivel
-        self.__strength = strength
-        self.__dex = dex
-        self.__int = int
-        self.__hp = hp
-        self.__mp = mp
-        self.__sp = sp
-        self.__pid = pid
-    #### Seleciona o nivel de dificuldade
+    #### Personagem
+    def __init__(self, strength=1, dex=1,int=1,hp=1,mp=1,sp=1,pid=10,nivel =0):
+        self._nivel = nivel
+        self._strength = strength
+        self._dex = dex
+        self._int = int
+        self._hp = hp
+        self._mp = mp
+        self._sp = sp
+        self._pid = pid
+
+    #### Exibe as informações do seu Personagem ao digitar print(instância de Personagem)
+    def __str__(self):
+        return f'Seus status atuais são: \nnivel: {self.nivel} \nForça: {self.strength} ' \
+               f'\nDestreza: {self.dex} \nInteligência: {self.int} \nHP: {self.hp} \nMP: {self.mp}' \
+               f'\nSP: {self.sp}'
+    #### Seleciona o nivel de dificuldade e exibe seus status ao fim da seleção
     def selecione_personagem(self):
         print("Escolha como deseja iniciar sua jornada\n")
         print("1- O Implacável Mago, Duck Dodgers(Easy) \n2- O Desossado, Ivar(regular) \n3- O Discipulo de Carl Marques, Píton(Hard)")
-        while (Personagem.pid != 1 and Personagem.pid != 2 and Personagem.pid != 3):
+        while not (Personagem.pid >= 1 and Personagem.pid<=3):
             Personagem.pid = int((input("Selecione um:\n").strip()))
             if(Personagem.pid == 1):
                 Personagem.hp = 100
@@ -25,6 +32,7 @@ class Personagem:
                 Personagem.int = 200
                 Personagem.nivel = 1
                 print("Você selecionou O Implacável Mago, Duck Dodgers(Easy)")
+                print(self)
                 s = input("Deseja Continuar? Sim[s] ou Não[n]")
                 if (s.upper() == "N"):
                     Personagem.pid = 0
@@ -37,7 +45,7 @@ class Personagem:
                 Personagem.int = 100
                 Personagem.nivel = 1
                 print("Você selecionou O Dessossado Ivar(regular)\n")
-                Personagem.status()
+                print(self)
                 s = input("Deseja Continuar? Sim[s] ou Não[n]")
                 if (s.upper() == "N"):
                     Personagem.pid = 0
@@ -50,99 +58,92 @@ class Personagem:
                 Personagem.int = 40
                 Personagem.nivel = 1
                 print("Você selecionou O Discipulo de Cal Marques, Píton(Hard)\n")
-                Personagem.status()
+                print(self)
                 s = input("Deseja Continuar? Sim[s] ou Não[n]")
                 if (s.upper() == "N"):
                     Personagem.pid = 0
 
-    #### Exibe as informações do seu Personagem
-    def __str__(self):
-        return f'Seus status atuais são: \nnivel: {self.nivel} \nForça: {self.strength} ' \
-               f'\nDestreza: {self.dex} \nInteligência: {self.int} \nHP: {self.hp} \nMP: {self.mp}' \
-               f'\nSP: {self.sp}'
-
-    ### Sobe seu Personagem de Nível
+    ### Sobe seu Personagem de Nível e exibe os novos status
     def sobe_nivel(self):
-        for stats in dicionario:
-           print(Personagem[stats])
+        self._nivel += 1
+        self._strength +=random.randrange(self._nivel,self._nivel+4)
+        self._dex +=random.randrange(self._nivel,self._nivel+4)
+        self._int +=random.randrange(self._nivel,self._nivel+4)
+        self._hp +=random.randrange(self._nivel,self._nivel+4)
+        self._mp +=random.randrange(self._nivel,self._nivel+4)
+        self._sp +=random.randrange(self._nivel,self._nivel+4)
+        self._pid +=random.randrange(self._nivel,self._nivel+4)
+        print(self)
 
     # ----------- GETTERS E SETTERS ----------- #
     @property
     def pid(self):
-        return self.__pid
+        return self._pid
 
     @pid.setter
     def pid(self, pid):
-        self.__pid = pid
+        self._pid = pid
 
     @property
     def strength(self):
-        return self.__strength
+        return self._strength
 
     @strength.setter
     def strength(self, add):
-        self.__strength += add
+        self._strength += add
 
     @property
     def dex(self):
-        return self.__dex
+        return self._dex
 
     @dex.setter
     def dex(self, add):
-        self.__dex += add
+        self._dex += add
 
     @property
     def int(self):
-        return self.__int
+        return self._int
 
     @int.setter
     def int(self, add):
-        self.__int += add
+        self._int += add
 
     @property
     def hp(self):
-        return self.__hp
+        return self._hp
 
     @hp.setter
     def hp(self, add):
-        self.__hp += add
+        self._hp += add
 
     @property
     def mp(self):
-        return self.__strength
+        return self._strength
 
     @mp.setter
     def mp(self, add):
-        self.__mp += add
+        self._mp += add
 
     @property
     def sp(self):
-        return self.__sp
+        return self._sp
 
     @sp.setter
     def sp(self, add):
-        self.__sp += add
+        self._sp += add
 
     @property
     def pid(self):
-        return self.__pid
+        return self._pid
     @pid.setter
     def pid(self, add):
-        self.__pid = add
+        self._pid = add
 
     @property
     def nivel(self):
-        return self.__nivel
+        return self._nivel
 
     @nivel.setter
     def nivel(self, add):
-        self.__nivel = add
+        self._nivel = add
 # ----------------------------------------- #
-
-
-p2 = Personagem(2, 2, 2, 2, 2, 2, 2, 2)
-
-dicionario = { 'strength':p2.strength,'dex':p2.dex}
-
-for x in dicionario:
-    print(dicionario[x])
