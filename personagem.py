@@ -17,13 +17,15 @@ class Personagem:
         return f'Seus status atuais são: \nnivel: {self.nivel} \nForça: {self.strength} ' \
                f'\nDestreza: {self.dex} \nInteligência: {self.int} \nHP: {self.hp} \nMP: {self.mp}' \
                f'\nSP: {self.sp}'
+
     #### Seleciona o nivel de dificuldade e exibe seus status ao fim da seleção
     def selecione_personagem(self):
         print("Escolha como deseja iniciar sua jornada\n")
         print("1- O Implacável Mago, Duck Dodgers(Easy) \n2- O Desossado, Ivar(regular) \n3- O Discipulo de Carl Marques, Píton(Hard)")
-        while not (Personagem.pid >= 1 and Personagem.pid<=3):
-            Personagem.pid = int((input("Selecione um:\n").strip()))
-            if(Personagem.pid == 1):
+        while not (self._pid >0 and self._pid<4):
+            print("1- O Implacável Mago, Duck Dodgers(Easy) \n2- O Desossado, Ivar(regular) \n3- O Discipulo de Carl Marques, Píton(Hard)")
+            self._pid = int((input("Selecione um:\n").strip()))
+            if(self._pid == 1):
                 Personagem.hp = 100
                 Personagem.mp = 250
                 Personagem.sp = 50
@@ -35,8 +37,8 @@ class Personagem:
                 print(self)
                 s = input("Deseja Continuar? Sim[s] ou Não[n]")
                 if (s.upper() == "N"):
-                    Personagem.pid = 0
-            elif(Personagem.pid == 2):
+                    self._pid = 0
+            elif(self._pid == 2):
                 Personagem.hp = 50
                 Personagem.mp = 20
                 Personagem.sp = 20
@@ -48,8 +50,8 @@ class Personagem:
                 print(self)
                 s = input("Deseja Continuar? Sim[s] ou Não[n]")
                 if (s.upper() == "N"):
-                    Personagem.pid = 0
-            elif(Personagem.pid == 3):
+                    self._pid = 0
+            elif(self._pid == 3):
                 Personagem.hp = 18
                 Personagem.mp = 6
                 Personagem.sp = 20
@@ -61,6 +63,7 @@ class Personagem:
                 print(self)
                 s = input("Deseja Continuar? Sim[s] ou Não[n]")
                 if (s.upper() == "N"):
+                    self._pid = 0
                     Personagem.pid = 0
 
     ### Sobe seu Personagem de Nível e exibe os novos status
