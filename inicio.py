@@ -1,5 +1,6 @@
 from personagem import Personagem
 from mensagens import Mensagens
+from batalha import
 
 def inicio():
 
