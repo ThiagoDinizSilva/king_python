@@ -2,7 +2,7 @@ import random
 class Personagem:
 
     #### Personagem
-    def __init__(self, strength=1, dex=1,int=1,hp=1,mp=1,sp=1,pid=10,nivel =0):
+    def __init__(self, strength=6, dex=1,int=1,hp=200,mp=1,sp=1,pid=10,nivel =1):
         self._nivel = nivel
         self._strength = strength
         self._dex = dex
@@ -21,7 +21,6 @@ class Personagem:
     #### Seleciona o nivel de dificuldade e exibe seus status ao fim da seleção
     def selecione_personagem(self):
         print("Escolha como deseja iniciar sua jornada\n")
-        print("1- O Implacável Mago, Duck Dodgers(Easy) \n2- O Desossado, Ivar(regular) \n3- O Discipulo de Carl Marques, Píton(Hard)")
         while not (self._pid >0 and self._pid<4):
             print("1- O Implacável Mago, Duck Dodgers(Easy) \n2- O Desossado, Ivar(regular) \n3- O Discipulo de Carl Marques, Píton(Hard)")
             self._pid = int((input("Selecione um:\n").strip()))
@@ -67,8 +66,8 @@ class Personagem:
                     Personagem.pid = 0
 
     ### Sobe seu Personagem de Nível e exibe os novos status
-    def sobe_nivel(self):
-        self._nivel += 1
+    def sobe_nivel(self,nivel):
+        self._nivel += nivel
         self._strength +=random.randrange(self._nivel,self._nivel+4)
         self._dex +=random.randrange(self._nivel,self._nivel+4)
         self._int +=random.randrange(self._nivel,self._nivel+4)
@@ -76,7 +75,7 @@ class Personagem:
         self._mp +=random.randrange(self._nivel,self._nivel+4)
         self._sp +=random.randrange(self._nivel,self._nivel+4)
         self._pid +=random.randrange(self._nivel,self._nivel+4)
-        print(self)
+        #print(self)
 
     # ----------- GETTERS E SETTERS ----------- #
     @property
@@ -117,7 +116,7 @@ class Personagem:
 
     @hp.setter
     def hp(self, add):
-        self._hp += add
+        self._hp = add
 
     @property
     def mp(self):
