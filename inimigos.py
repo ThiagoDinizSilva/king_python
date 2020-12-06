@@ -1,29 +1,33 @@
-import  random
-class Inimigo():
+import random
 
+
+### Classe Inimigo
+class Inimigo:
+    ### Lista de possíveis nomes dos inimigos
     inimigos_nomes = ['Wynax', 'Nehilde', 'Connea', 'Rid', 'Flof',
                       'Escka', 'War', 'Nargguth']
-    ####Inimigos
-    def __init__(self, strength=1, dex=1,int=1,hp=10,mp=1,sp=1,pid=1,nivel =1):
+
+    ### Objeto Inimigo, que gera seus status e seleciona nomes diferentes
+    ### da lista acima cada vez que é instanciado
+    def __init__(self, pid=1, nivel=1):
         self._name = random.choice(Inimigo.inimigos_nomes)
         self._nivel = nivel
-        self._strength = random.randrange(self._nivel, self._nivel + 8)
-        self._dex = random.randrange(self._nivel, self._nivel + 8)
+        self._strength = random.randrange(self._nivel + 5, self._nivel + 35)
+        self._dex = random.randrange(self._nivel + 7, self._nivel + 12)
         self._int = random.randrange(self._nivel, self._nivel + 8)
-        self._hp = random.randrange(self._nivel, self._nivel + 20)
+        self._hp = random.randrange(self._nivel + 20, self._nivel + 50)
         self._mp = random.randrange(self._nivel, self._nivel + 15)
         self._sp = random.randrange(self._nivel, self._nivel + 12)
         self._pid = bool(pid)
 
-    #### Exibe as informações do seu Inimigo ao digitar print(instância de Personagem)
+    ### Exibe as informações do seu Inimigo ao digitar print(instância de Personagem)
     def __str__(self):
         return f'Status dos Inimigos:  \nnivel: {self.nivel} \nForça: {self.strength} ' \
                f'\nDestreza: {self.dex} \nInteligência: {self.int} \nHP: {self.hp} \nMP: {self.mp}' \
-               f'\nSP: {self.sp} \nPid: {self.pid} \nnome: {self.nome}\n'
+               f'\nSP: {self.sp} \nPid: {self.pid} \nnome: {self.name}\n'
 
     def __repr__(self):
         return str(self.__dict__)
-
 
     # ----------- GETTERS E SETTERS ----------- #
     @property
@@ -32,8 +36,7 @@ class Inimigo():
 
     @name.setter
     def name(self, add):
-        self._name = random.choice(Inimigo.inimigos_nomes)
-
+        self._name = add
 
     @property
     def pid(self):
@@ -92,17 +95,9 @@ class Inimigo():
         self._sp += add
 
     @property
-    def pid(self):
-        return self._pid
-    @pid.setter
-    def pid(self, add):
-        self._pid = add
-
-    @property
     def nivel(self):
         return self._nivel
 
     @nivel.setter
     def nivel(self, add):
         self._nivel = add
-
