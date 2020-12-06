@@ -1,6 +1,4 @@
 from menu import Mensagens,Menu
-from personagem import  Personagem
-from inimigos import  Inimigo
 
 def inicio():
 
